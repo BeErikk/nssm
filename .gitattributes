@@ -1,2 +1,73 @@
+/src/** linguist-language=C++
+* text=input
+
+*.h text eol=lf
+*.hpp text eol=lf
+*.inl text eol=lf
+*.c text eol=lf
+*.cpp text eol=lf
+*.idl text eol=lf
+*.mof text eol=lf
+*.js text eol=lf
+*.patch text eol=lf
+*.diff text eol=lf
+*.def text eol=crlf
+*.rc text eol=crlf
+*.ver text eol=lf
+*.rc2 text eol=lf
+*.xml text eol=lf
+*.rgs text eol=crlf
+resource.h text eol=crlf
+*.inf text eol=crlf
+*.sln text eol=crlf
+*.vcproj text eol=crlf
+*.vcxproj text eol=crlf
+*.filters text eol=crlf
+*.vcxitems text eol=crlf
+*.config text eol=crlf
+*.addin text eol=crlf
+*.rules text eol=crlf
+*.vsprops text eol=crlf
+*.props text eol=crlf
+*.targets text eol=crlf
+*.hhc text eol=crlf
+*.hhk text eol=crlf
+*.hhp text eol=crlf
+sources text eol=crlf
+makefile text eol=crlf
+makefile.inc text eol=crlf
+*.mk text eol=crlf
+*.rtf text eol=crlf
+*.cmd text eol=crlf
+*.bat text eol=crlf
+
+*.dll binary
+*.exe binary
+*.zip binary
+*.7z binary
+*.jar binary
+*.lib binary
+*.a binary
+*.obj binary
+*.o binary
+*.ani binary
+*.bmp binary
+*.cur binary
+*.ico binary
+*.jpg binary
+*.gif binary
+*.png binary
+*.bik binary
+*.d3f binary
+*.tga binary
+*.txm binary
+*.wav binary
+*.fst binary
+*.pak binary
+*.fx binary
+*.doc binary
+*.xls binary
+*.accdb binary
+
 *.mc diff
 *.rc diff

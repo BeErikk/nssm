@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="nssm"
 	ProjectGUID="{32995E05-606F-4D83-A2E6-C2B361B34DF1}"
 	RootNamespace="nssm"
+	Keyword="Win32Proj"
 	TargetFrameworkVersion="0"
 	>
 	<Platforms>
@@ -16,28 +17,26 @@
 		/>
 	</Platforms>
 	<ToolFiles>
+		<DefaultToolFile
+			FileName="mc.rules"
+		/>
 	</ToolFiles>
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="out\$(ConfigurationName)\win32"
-			IntermediateDirectory="tmp\$(ConfigurationName)\win32"
+			OutputDirectory="..\bin\$(PlatformName)_$(ConfigurationName)\"
 			ConfigurationType="1"
-			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
+			InheritedPropertySheets=".\nssm.vsprops"
 			CharacterSet="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				Description="Setting version information"
-				CommandLine="version.cmd"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
-				Description=""
-				CommandLine=""
-				Outputs=""
+			/>
+			<Tool
+				Name="MessageCompile"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -47,23 +46,18 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName="$(IntDir)/$(ProjectName).tlb"
-				HeaderFileName=""
+				PreprocessorDefinitions="_DEBUG"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
-				MinimalRebuild="true"
+				FavorSizeOrSpeed="0"
+				OmitFramePointers="false"
+				PreprocessorDefinitions="_DEBUG"
+				StringPooling="false"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="1"
-				PrecompiledHeaderFile="$(IntDir)/$(ProjectName).pch"
-				AssemblerListingLocation="$(IntDir)/"
-				ObjectFile="$(IntDir)/"
-				ProgramDataBaseFileName="$(IntDir)/"
-				WarningLevel="3"
-				SuppressStartupBanner="true"
-				DebugInformationFormat="3"
+				RuntimeLibrary="3"
+				OmitDefaultLibName="false"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -71,21 +65,14 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_DEBUG"
-				Culture="2057"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="psapi.lib shlwapi.lib"
-				LinkIncremental="2"
-				SuppressStartupBanner="true"
-				GenerateDebugInformation="true"
-				ProgramDatabaseFile="$(OutDir)/$(ProjectName).pdb"
-				SubSystem="1"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
+				OptimizeReferences="0"
+				EnableCOMDATFolding="0"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -99,8 +86,6 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				SuppressStartupBanner="true"
-				OutputFile="$(IntDir)/$(ProjectName).bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -114,24 +99,19 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|x64"
-			OutputDirectory="out\$(ConfigurationName)\win64"
-			IntermediateDirectory="tmp\$(ConfigurationName)\win64"
+			OutputDirectory="..\bin\$(PlatformName)_$(ConfigurationName)\"
 			ConfigurationType="1"
-			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
+			InheritedPropertySheets=".\nssm.vsprops"
 			CharacterSet="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				Description="Setting version information"
-				CommandLine="version.cmd"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
-				Description=""
-				CommandLine=""
-				Outputs=""
+			/>
+			<Tool
+				Name="MessageCompile"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -141,46 +121,33 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TargetEnvironment="3"
-				TypeLibraryName="$(IntDir)/$(ProjectName).tlb"
-				HeaderFileName=""
+				PreprocessorDefinitions="_DEBUG"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
-				MinimalRebuild="true"
+				FavorSizeOrSpeed="0"
+				OmitFramePointers="false"
+				PreprocessorDefinitions="_DEBUG"
+				StringPooling="false"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="1"
-				PrecompiledHeaderFile="$(IntDir)/$(ProjectName).pch"
-				AssemblerListingLocation="$(IntDir)/"
-				ObjectFile="$(IntDir)/"
-				ProgramDataBaseFileName="$(IntDir)/"
-				WarningLevel="3"
-				SuppressStartupBanner="true"
-				DebugInformationFormat="3"
+				RuntimeLibrary="3"
+				OmitDefaultLibName="false"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG;_WIN64"
-				Culture="2057"
+				PreprocessorDefinitions="_DEBUG"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="psapi.lib shlwapi.lib"
-				LinkIncremental="2"
-				SuppressStartupBanner="true"
-				GenerateDebugInformation="true"
-				ProgramDatabaseFile="$(OutDir)/$(ProjectName).pdb"
-				SubSystem="1"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
+				OptimizeReferences="0"
+				EnableCOMDATFolding="0"
 				TargetMachine="17"
 			/>
 			<Tool
@@ -194,8 +161,6 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				SuppressStartupBanner="true"
-				OutputFile="$(IntDir)/$(ProjectName).bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -209,24 +174,20 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="out\$(ConfigurationName)\win32"
-			IntermediateDirectory="tmp\$(ConfigurationName)\win32"
+			OutputDirectory="..\bin\$(PlatformName)_$(ConfigurationName)\"
 			ConfigurationType="1"
-			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
+			InheritedPropertySheets=".\nssm.vsprops"
 			CharacterSet="1"
+			WholeProgramOptimization="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				Description="Setting version information"
-				CommandLine="version.cmd"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
-				Description=""
-				CommandLine=""
-				Outputs=""
+			/>
+			<Tool
+				Name="MessageCompile"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -236,24 +197,12 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName="$(IntDir)/$(ProjectName).tlb"
-				HeaderFileName=""
+				PreprocessorDefinitions="NDEBUG"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				Optimization="2"
-				InlineFunctionExpansion="1"
-				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
-				StringPooling="true"
-				RuntimeLibrary="0"
-				EnableFunctionLevelLinking="true"
-				PrecompiledHeaderFile="$(IntDir)/$(ProjectName).pch"
-				AssemblerListingLocation="$(IntDir)/"
-				ObjectFile="$(IntDir)/"
-				ProgramDataBaseFileName="$(IntDir)/"
-				WarningLevel="3"
-				SuppressStartupBanner="true"
-				DebugInformationFormat="3"
+				PreprocessorDefinitions="NDEBUG"
+				OmitDefaultLibName="false"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -261,23 +210,12 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="NDEBUG"
-				Culture="2057"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="psapi.lib shlwapi.lib"
-				LinkIncremental="1"
-				SuppressStartupBanner="true"
-				GenerateDebugInformation="true"
-				ProgramDatabaseFile="$(OutDir)/$(ProjectName).pdb"
-				SubSystem="1"
-				OptimizeReferences="2"
-				EnableCOMDATFolding="2"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -291,8 +229,6 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				SuppressStartupBanner="true"
-				OutputFile="$(IntDir)/$(ProjectName).bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -306,24 +242,20 @@
 		</Configuration>
 		<Configuration
 			Name="Release|x64"
-			OutputDirectory="out\$(ConfigurationName)\win64"
-			IntermediateDirectory="tmp\$(ConfigurationName)\win64"
+			OutputDirectory="..\bin\$(PlatformName)_$(ConfigurationName)\"
 			ConfigurationType="1"
-			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
+			InheritedPropertySheets=".\nssm.vsprops"
 			CharacterSet="1"
+			WholeProgramOptimization="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				Description="Setting version information"
-				CommandLine="version.cmd"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
-				Description=""
-				CommandLine=""
-				Outputs=""
+			/>
+			<Tool
+				Name="MessageCompile"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -333,49 +265,25 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TargetEnvironment="3"
-				TypeLibraryName="$(IntDir)/$(ProjectName).tlb"
-				HeaderFileName=""
+				PreprocessorDefinitions="NDEBUG"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				Optimization="2"
-				InlineFunctionExpansion="1"
-				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
-				StringPooling="true"
-				RuntimeLibrary="0"
-				EnableFunctionLevelLinking="true"
-				PrecompiledHeaderFile="$(IntDir)/$(ProjectName).pch"
-				AssemblerListingLocation="$(IntDir)/"
-				ObjectFile="$(IntDir)/"
-				ProgramDataBaseFileName="$(IntDir)/"
-				WarningLevel="3"
-				SuppressStartupBanner="true"
-				DebugInformationFormat="3"
+				PreprocessorDefinitions="NDEBUG"
+				OmitDefaultLibName="false"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG;_WIN64"
-				Culture="2057"
+				PreprocessorDefinitions="NDEBUG"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="psapi.lib shlwapi.lib"
-				LinkIncremental="1"
-				SuppressStartupBanner="true"
-				GenerateDebugInformation="true"
-				ProgramDatabaseFile="$(OutDir)/$(ProjectName).pdb"
-				SubSystem="1"
-				OptimizeReferences="2"
-				EnableCOMDATFolding="2"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
 				TargetMachine="17"
 			/>
 			<Tool
@@ -389,8 +297,6 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				SuppressStartupBanner="true"
-				OutputFile="$(IntDir)/$(ProjectName).bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -407,410 +313,227 @@
 	</References>
 	<Files>
 		<Filter
-			Name="Source Files"
-			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
+			Name="Sources"
+			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
-			<File
-				RelativePath="account.cpp"
+			<Filter
+				Name="nssm"
 				>
-			</File>
-			<File
-				RelativePath="console.cpp"
-				>
-			</File>
-			<File
-				RelativePath="env.cpp"
-				>
-			</File>
-			<File
-				RelativePath="event.cpp"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
+				<File
+					RelativePath="..\src\account.cpp"
 					>
-					<Tool
-						Name="VCCLCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|x64"
+				</File>
+				<File
+					RelativePath="..\src\console.cpp"
 					>
-					<Tool
-						Name="VCCLCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
+				</File>
+				<File
+					RelativePath="..\src\env.cpp"
 					>
-					<Tool
-						Name="VCCLCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
+				</File>
+				<File
+					RelativePath="..\src\event.cpp"
 					>
-					<Tool
-						Name="VCCLCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="gui.cpp"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
+				</File>
+				<File
+					RelativePath="..\src\gui.cpp"
 					>
-					<Tool
-						Name="VCCLCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|x64"
+				</File>
+				<File
+					RelativePath="..\src\hook.cpp"
 					>
-					<Tool
-						Name="VCCLCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
+				</File>
+				<File
+					RelativePath="..\src\imports.cpp"
 					>
-					<Tool
-						Name="VCCLCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
+				</File>
+				<File
+					RelativePath="..\src\ioimpl.cpp"
 					>
-					<Tool
-						Name="VCCLCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="hook.cpp"
-				>
-			</File>
-			<File
-				RelativePath="imports.cpp"
-				>
-			</File>
-			<File
-				RelativePath="io.cpp"
-				>
-			</File>
-			<File
-				RelativePath="nssm.cpp"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
+				</File>
+				<File
+					RelativePath="..\src\nssm.cpp"
 					>
-					<Tool
-						Name="VCCLCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|x64"
+				</File>
+				<File
+					RelativePath="..\src\processimpl.cpp"
 					>
-					<Tool
-						Name="VCCLCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
+				</File>
+				<File
+					RelativePath="..\src\registry.cpp"
 					>
-					<Tool
-						Name="VCCLCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
+				</File>
+				<File
+					RelativePath="..\src\service.cpp"
 					>
-					<Tool
-						Name="VCCLCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="process.cpp"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
+				</File>
+				<File
+					RelativePath="..\src\settings.cpp"
 					>
-					<Tool
-						Name="VCCLCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|x64"
+				</File>
+				<File
+					RelativePath="..\src\utf8.cpp"
 					>
-					<Tool
-						Name="VCCLCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="registry.cpp"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="service.cpp"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="settings.cpp"
-				>
-			</File>
-			<File
-				RelativePath="utf8.cpp"
-				>
-			</File>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
-			Name="Header Files"
-			Filter="h;hpp;hxx;hm;inl"
+			Name="Headers"
+			Filter="h;hh;hpp;hxx;hm;inl;inc;xsd"
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
-			<File
-				RelativePath="account.h"
+			<Filter
+				Name="nssm"
 				>
-			</File>
-			<File
-				RelativePath="console.h"
-				>
-			</File>
-			<File
-				RelativePath="env.h"
-				>
-			</File>
-			<File
-				RelativePath="event.h"
-				>
-			</File>
-			<File
-				RelativePath="gui.h"
-				>
-			</File>
-			<File
-				RelativePath="hook.h"
-				>
-			</File>
-			<File
-				RelativePath="imports.h"
-				>
-			</File>
-			<File
-				RelativePath="io.h"
-				>
-			</File>
-			<File
-				RelativePath="nssm.h"
-				>
-			</File>
-			<File
-				RelativePath="process.h"
-				>
-			</File>
-			<File
-				RelativePath="registry.h"
-				>
-			</File>
-			<File
-				RelativePath="service.h"
-				>
-			</File>
-			<File
-				RelativePath="settings.h"
-				>
-			</File>
-			<File
-				RelativePath="utf8.h"
-				>
-			</File>
+				<File
+					RelativePath="..\src\account.h"
+					>
+				</File>
+				<File
+					RelativePath="..\src\console.h"
+					>
+				</File>
+				<File
+					RelativePath="..\src\env.h"
+					>
+				</File>
+				<File
+					RelativePath="..\src\event.h"
+					>
+				</File>
+				<File
+					RelativePath="..\src\gui.h"
+					>
+				</File>
+				<File
+					RelativePath="..\src\hook.h"
+					>
+				</File>
+				<File
+					RelativePath="..\src\imports.h"
+					>
+				</File>
+				<File
+					RelativePath="..\src\ioimpl.h"
+					>
+				</File>
+				<File
+					RelativePath="..\src\nssm.h"
+					>
+				</File>
+				<File
+					RelativePath="..\src\processimpl.h"
+					>
+				</File>
+				<File
+					RelativePath="..\src\registry.h"
+					>
+				</File>
+				<File
+					RelativePath="..\src\service.h"
+					>
+				</File>
+				<File
+					RelativePath="..\src\settings.h"
+					>
+				</File>
+				<File
+					RelativePath="..\src\utf8.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
-			Name="Resource Files"
-			Filter="ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
+			Name="Resources"
+			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms"
+			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
-			<File
-				RelativePath="nssm.ico"
+			<Filter
+				Name="nssm"
 				>
-			</File>
-			<File
-				RelativePath="nssm.rc"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
+				<File
+					RelativePath="..\resources\messages.mc"
 					>
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|x64"
+				</File>
+				<File
+					RelativePath="..\resources\nssm.ico"
 					>
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
+				</File>
+				<File
+					RelativePath="..\resources\nssm.rc"
 					>
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
+				</File>
+				<File
+					RelativePath="..\resources\resource.h"
 					>
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-			</File>
+				</File>
+				<File
+					RelativePath="..\resources\version.cmd"
+					>
+				</File>
+			</Filter>
 		</Filter>
-		<File
-			RelativePath="messages.mc"
+		<Filter
+			Name="build"
 			>
-			<FileConfiguration
-				Name="Debug|Win32"
+			<Filter
+				Name="precompiled"
 				>
-				<Tool
-					Name="VCCustomBuildTool"
-					Description="Compiling messages"
-					CommandLine="mc -u -U $(InputName).mc -r . -h .&#x0D;&#x0A;"
-					Outputs="$(InputName).rc;$(InputName).h"
-				/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Debug|x64"
+				<File
+					RelativePath=".\nssm_pch.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							UsePrecompiledHeader="1"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Debug|x64"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							UsePrecompiledHeader="1"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							UsePrecompiledHeader="1"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|x64"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							UsePrecompiledHeader="1"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\nssm_pch.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="config"
 				>
-				<Tool
-					Name="VCCustomBuildTool"
-					Description="Compiling messages"
-					CommandLine="mc -u -U $(InputName).mc -r . -h .&#x0D;&#x0A;"
-					Outputs="$(InputName).rc;$(InputName).h"
-				/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Release|Win32"
-				>
-				<Tool
-					Name="VCCustomBuildTool"
-					Description="Compiling messages"
-					CommandLine="mc -u -U $(InputName).mc -r . -h .&#x0D;&#x0A;"
-					AdditionalDependencies=""
-					Outputs="$(InputName).rc;$(InputName).h"
-				/>
-			</FileConfiguration>
-			<FileConfiguration
-				Name="Release|x64"
-				>
-				<Tool
-					Name="VCCustomBuildTool"
-					Description="Compiling messages"
-					CommandLine="mc -u -U $(InputName).mc -r . -h .&#x0D;&#x0A;"
-					AdditionalDependencies=""
-					Outputs="$(InputName).rc;$(InputName).h"
-				/>
-			</FileConfiguration>
-		</File>
+				<File
+					RelativePath=".\nssm.vsprops"
+					>
+				</File>
+			</Filter>
+		</Filter>
+		<Filter
+			Name="docs"
+			>
+		</Filter>
 	</Files>
 	<Globals>
 	</Globals>
