@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VisualStudioToolFile
+	Name="Message compiler"
+	Version="8,00"
+	>
+	<Rules>
+		<CustomBuildRule
+			Name="MessageCompile"
+			DisplayName="Message compiler"
+			CommandLine="mc.exe [AllOptions] [AdditionalOptions] [Inputs]"
+			Outputs="$(InputName).rc $(InputName).h"
+			FileExtensions="*.mc"
+			ExecutionDescription="Compiling messages ..."
+			>
+			<Properties>
+				<BooleanProperty
+					Name="GenerateOle2Header"
+					DisplayName="Generate OLE2 header"
+					Description="Instructs the compiler to generate an OLE2 header file, using HRESULT definitions; otherwise, status codes are used. (-o)"
+					Switch="-o"
+				/>
+				<StringProperty
+					Name="MaximumMessageLength"
+					DisplayName="Maximum message length"
+					Description="Instructs the message compiler to generate a warning if the length of any message exceeds the length characters. (-m length)"
+					Switch="-m [value]"
+				/>
+				<BooleanProperty
+					Name="SetCustomerbit"
+					DisplayName="Set customer bit"
+					Description="Sets the customer bit (bit 28) in all message ID error codes (-c)."
+					Switch="-c"
+				/>
+				<BooleanProperty
+					Name="TerminateMessageWithNull"
+					DisplayName="Terminate message with null"
+					Description="Terminates all strings with null in the message tables. The default is to terminate the message body with a CR/LF (-n)."
+					Switch="-n"
+				/>
+				<BooleanProperty
+					Name="UseDecimalValues"
+					DisplayName="Use decimal values"
+					Description="Use this argument to use decimal values for the Severity and Facility constants in the header file instead of hexadecimal values. (-d)"
+					Switch="-d"
+				/>
+				<BooleanProperty
+					Name="Verbose"
+					DisplayName="Verbose output"
+					Description="Generates verbose output to stderr (-v)"
+					Switch="-v"
+				/>
+				<BooleanProperty
+					Name="AnsiInputFile"
+					DisplayName="ANSI input file"
+					PropertyPageName="Encoding options"
+					Description="Specifies that the input file is CP_ACP (ANSI) (default -a). Ignored if the .mc file has a UTF-8 or UTF-16LE BOM"
+					Switch="-a"
+					DefaultValue="true"
+				/>
+				<BooleanProperty
+					Name="UnicodeInputFile"
+					DisplayName="UTF-16LE input file"
+					PropertyPageName="Encoding options"
+					Description="Specifies that the input file is UTF-16LE (-u). Ignored if the .mc file has a UTF-8 or UTF-16LE BOM"
+					Switch="-u"
+				/>
+				<BooleanProperty
+					Name="AnsiMessageInBinFile"
+					DisplayName="ANSI message in bin file - DEPRECATED"
+					PropertyPageName="Encoding options"
+					Description="Use this argument to specify that the messages in the output .bin file should be Ansi. (-A)"
+					Switch="-A"
+				/>
+				<BooleanProperty
+					Name="UnicodeMessageInBinFile"
+					DisplayName="UTF-16LE message in output file"
+					PropertyPageName="Encoding options"
+					Description="Specifies that messages in the output .bin file should be UTF-16LE (default -U)."
+					Switch="-U"
+					DefaultValue="true"
+				/>
+				<BooleanProperty
+					Name="UnicodeMessageInBinFileUTF8"
+					DisplayName="UTF8 message in output file"
+					PropertyPageName="Encoding options"
+					Description="Specifies that messages in the output .bin file should be UTF8 (-U8)."
+					Switch="-U8"
+				/>
+				<StringProperty
+					Name="CharacterEncoding"
+					DisplayName="Character encoding"
+					PropertyPageName="Encoding options"
+					Description="Text files will be generated with specified character encoding: (ansi), (utf-8) or (utf-16). A byte order mark (BOM) will be added. (-cp encoding)"
+					Switch="-cp [value]"
+					DefaultValue="utf-8"
+				/>
+				<StringProperty
+					Name="HeaderFilePath"
+					DisplayName="Header file path"
+					PropertyPageName="File options"
+					Description="The path of where to create the header file. (-h path)"
+					Switch="-h [value]"
+					DefaultValue="$(IntDir)"
+				/>
+				<StringProperty
+					Name="RCFilePath"
+					DisplayName="RC file path"
+					PropertyPageName="File options"
+					Description="The folder into which you want the compiler to place the generated resource compiler script (.rc file) and the generated .bin files. (-r path)"
+					Switch="-r [value]"
+					DefaultValue="$(IntDir)"
+				/>
+				<StringProperty
+					Name="DebugOutputPath"
+					DisplayName="Debug output path"
+					PropertyPageName="File options"
+					Description="The path of where to place the .dbg C include file. (-x path)"
+					Switch="-x [value]"
+				/>
+				<BooleanProperty
+					Name="UseBaseNameOfInput"
+					DisplayName="Use base name of input"
+					PropertyPageName="File options"
+					Description="Use this argument to have the compiler use the base name of the filename input file for the .bin file names. (-b)"
+					Switch="-b"
+				/>
+				<StringProperty
+					Name="GeneratedFilesBaseName"
+					DisplayName="Generated files base name"
+					PropertyPageName="File options"
+					Description="Specifies the base name of all generated files. (-z basename)"
+					Switch="-z [value]"
+				/>
+				<StringProperty
+					Name="HeaderExtension"
+					DisplayName="File extension for the generated header"
+					PropertyPageName="File options"
+					Description="Specifies the extension of the generated header file. (-e extension)"
+					Switch="-e [value]"
+				/>
+				<StringProperty
+					Name="BaselinePath"
+					DisplayName="Baseline path"
+					PropertyPageName="Manifest file options"
+					Description="The path must point to the folder that contains the .BIN files that the baseline operation created. (-t directory)"
+					Switch="-t [value]"
+				/>
+				<StringProperty
+					Name="BaselineResourcePath"
+					DisplayName="Baseline resource path"
+					PropertyPageName="Manifest file options"
+					Description="The folder which contains the baseline manifest files. (-s directory)"
+					Switch="-s [value]"
+				/>
+				<StringProperty
+					Name="SchemaPath"
+					DisplayName="Schema validation file path"
+					PropertyPageName="Manifest file options"
+					Description="The path to the schema file (for example, eventman.xsd) used for schema validation. If this parameter is not provided, the compiler does not perform schema validation. (-w path)"
+					Switch="-w [value]"
+				/>
+				<StringProperty
+					Name="WinmetaPath"
+					DisplayName="Pre-defined values file path"
+					PropertyPageName="Manifest file options"
+					Description="Specifies the path of the Winmeta.xml file. This file contains pre-defined values for event attributes, parameter types, and standard channels. (-W path)"
+					Switch="-W [value]"
+				/>
+				<BooleanProperty
+					Name="EnableCalloutMacro"
+					DisplayName="Enable callout macro"
+					PropertyPageName="Manifest file options"
+					Description="Add a callout macro for invoking user code when logging enabled events defined in the manifest. (-co)"
+					Switch="-co"
+				/>
+				<BooleanProperty
+					Name="GenerateUserModeLoggingMacros"
+					DisplayName="Generate user mode logging macros"
+					PropertyPageName="Logging code"
+					Description="Generate code (macros) used to log events for user-mode applications. (-um)"
+					Switch="-um"
+				/>
+				<BooleanProperty
+					Name="GenerateKernelModeLoggingMacros"
+					DisplayName="Generate kernel mode logging macros"
+					PropertyPageName="Logging code"
+					Description="Generate code (macros) used to log events for kernel-mode applications. (-km)"
+					Switch="-km"
+				/>
+				<BooleanProperty
+					Name="GenerateMofFile"
+					DisplayName="Generate MOF file"
+					PropertyPageName="Logging code"
+					Description="Generate down-level support for all function/macros generated. MOF file will be generated from the manifest. MOF file will be placed in the location specified by the -h switch."
+					Switch="-mof"
+				/>
+				<StringProperty
+					Name="PrefixMacroName"
+					DisplayName="Prefix macro name"
+					PropertyPageName="Logging code"
+					Description="Use this argument to override the default prefix that the compiler uses for the logging macro names and method names. (-p prefix)"
+					Switch="-p [value]"
+				/>
+				<StringProperty
+					Name="RemoveCharsFromSymbolName"
+					DisplayName="Remove characters from symbolic name"
+					PropertyPageName="Logging code"
+					Description="Use this argument to remove characters from the beginning of the symbolic name that you specified for the event. (-P prefix)"
+					Switch="-P [value]"
+				/>
+				<StringProperty
+					Name="GenerateCSharpLoggingClass"
+					DisplayName="Generate C# logging class"
+					PropertyPageName="Logging code"
+					Description="Generate C# (managed) logging class. (-cs namespace)"
+					Switch="-cs [value]"
+				/>
+				<StringProperty
+					Name="GenerateStaticCSharpLoggingClass"
+					DisplayName="Generate static C# logging class"
+					PropertyPageName="Logging code"
+					Description="Generate static C# (managed) logging class. (-css namespace)"
+					Switch="-css [value]"
+				/>
+			</Properties>
+		</CustomBuildRule>
+	</Rules>
+</VisualStudioToolFile>
