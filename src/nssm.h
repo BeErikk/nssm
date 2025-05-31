@@ -1,3 +1,18 @@
+/*******************************************************************************
+ nssm.h - 
+
+ SPDX-License-Identifier: CC0 1.0 Universal Public Domain
+ Original author Iain Patterson released nssm under Public Domain
+ https://creativecommons.org/publicdomain/zero/1.0/
+
+ NSSM source code - the Non-Sucking Service Manager
+
+ 2025-05-31 and onwards modified Jerker Bäck
+
+*******************************************************************************/
+
+#pragma once
+
 #ifndef NSSM_H
 #define NSSM_H
 
@@ -25,21 +40,21 @@
 
   So that's that cleared up, then.
 */
-#ifdef UNICODE
-#define PATH_LENGTH 32767
-#else
-#define PATH_LENGTH MAX_PATH
-#endif
-#define DIR_LENGTH PATH_LENGTH - 12
+//#ifdef UNICODE
+//#define PATH_LENGTH 32767
+//#else
+//#define PATH_LENGTH MAX_PATH
+//#endif
+//#define DIR_LENGTH PATH_LENGTH - 12
 
-#define _WIN32_WINNT 0x0500
+//#define _WIN32_WINNT 0x0500
 
 #define APSTUDIO_HIDDEN_SYMBOLS
 #include <windows.h>
 #include <prsht.h>
 #undef APSTUDIO_HIDDEN_SYMBOLS
 #include <commctrl.h>
-#include <tchar.h>
+//#include <tchar.h>
 #ifndef NSSM_COMPILE_RC
 #include <fcntl.h>
 #include <io.h>
@@ -55,108 +70,36 @@
 #include "hook.h"
 #include "imports.h"
 #include "messages.h"
-#include "process.h"
+#include "process_impl.h"
 #include "registry.h"
 #include "settings.h"
-#include "io.h"
+#include "io-impl.h"
 #include "gui.h"
 #endif
 
-void nssm_exit(int);
-int str_equiv(const TCHAR *, const TCHAR *);
-int quote(const TCHAR *, TCHAR *, size_t);
-void strip_basename(TCHAR *);
-int str_number(const TCHAR *, unsigned long *, TCHAR **);
-int str_number(const TCHAR *, unsigned long *);
-int num_cpus();
-int usage(int);
-const TCHAR *nssm_unquoted_imagepath();
-const TCHAR *nssm_imagepath();
-const TCHAR *nssm_exe();
+void nssm_exit(int32_t);
+int32_t str_equiv(const wchar_t*, const wchar_t*);
+int32_t quote(const wchar_t*, wchar_t*, size_t);
+void strip_basename(wchar_t*);
+int32_t str_number(const wchar_t*, uint32_t*, wchar_t**);
+int32_t str_number(const wchar_t*, uint32_t*);
+int32_t num_cpus();
+int32_t usage(int32_t);
+const wchar_t* nssm_unquoted_imagepath();
+const wchar_t* nssm_imagepath();
+const wchar_t* nssm_exe();
 
-#define NSSM _T("NSSM")
+#define NSSM L"NSSM"
 #ifdef _WIN64
-#define NSSM_ARCHITECTURE _T("64-bit")
+#define NSSM_ARCHITECTURE L"64-bit"
 #else
-#define NSSM_ARCHITECTURE _T("32-bit")
+#define NSSM_ARCHITECTURE L"32-bit"
 #endif
 #ifdef _DEBUG
-#define NSSM_DEBUG _T(" debug")
+#define NSSM_DEBUG L" debug"
 #else
-#define NSSM_DEBUG _T("")
+#define NSSM_DEBUG L""
 #endif
 #define NSSM_CONFIGURATION NSSM_ARCHITECTURE NSSM_DEBUG
 #include "version.h"
 
-/*
-  Throttle the restart of the service if it stops before this many
-  milliseconds have elapsed since startup.  Override in registry.
-*/
-#define NSSM_RESET_THROTTLE_RESTART 1500
-
-/*
-  How many milliseconds to wait for the application to die after sending
-  a Control-C event to its console.  Override in registry.
-*/
-#define NSSM_KILL_CONSOLE_GRACE_PERIOD 1500
-/*
-  How many milliseconds to wait for the application to die after posting to
-  its windows' message queues.  Override in registry.
-*/
-#define NSSM_KILL_WINDOW_GRACE_PERIOD 1500
-/*
-  How many milliseconds to wait for the application to die after posting to
-  its threads' message queues.  Override in registry.
-*/
-#define NSSM_KILL_THREADS_GRACE_PERIOD 1500
-
-/* How many milliseconds to pause after rotating logs. */
-#define NSSM_ROTATE_DELAY 0
-
-/* Margin of error for service status wait hints in milliseconds. */
-#define NSSM_WAITHINT_MARGIN 2000
-
-/* Methods used to try to stop the application. */
-#define NSSM_STOP_METHOD_CONSOLE (1 << 0)
-#define NSSM_STOP_METHOD_WINDOW (1 << 1)
-#define NSSM_STOP_METHOD_THREADS (1 << 2)
-#define NSSM_STOP_METHOD_TERMINATE (1 << 3)
-
-/* Startup types. */
-#define NSSM_STARTUP_AUTOMATIC 0
-#define NSSM_STARTUP_DELAYED 1
-#define NSSM_STARTUP_MANUAL 2
-#define NSSM_STARTUP_DISABLED 3
-
-/* Exit actions. */
-#define NSSM_EXIT_RESTART 0
-#define NSSM_EXIT_IGNORE 1
-#define NSSM_EXIT_REALLY 2
-#define NSSM_EXIT_UNCLEAN 3
-#define NSSM_NUM_EXIT_ACTIONS 4
-
-/* Process priority. */
-#define NSSM_REALTIME_PRIORITY 0
-#define NSSM_HIGH_PRIORITY 1
-#define NSSM_ABOVE_NORMAL_PRIORITY 2
-#define NSSM_NORMAL_PRIORITY 3
-#define NSSM_BELOW_NORMAL_PRIORITY 4
-#define NSSM_IDLE_PRIORITY 5
-
-/* How many milliseconds to wait before updating service status. */
-#define NSSM_SERVICE_STATUS_DEADLINE 20000
-
-/* User-defined service controls can be in the range 128-255. */
-#define NSSM_SERVICE_CONTROL_START 0
-#define NSSM_SERVICE_CONTROL_ROTATE 128
-
-/* How many milliseconds to wait for a hook. */
-#define NSSM_HOOK_DEADLINE 60000
-
-/* How many milliseconds to wait for outstanding hooks. */
-#define NSSM_HOOK_THREAD_DEADLINE 80000
-
-/* How many milliseconds to wait for closing logging thread. */
-#define NSSM_CLEANUP_LOGGERS_DEADLINE 1500
-
-#endif

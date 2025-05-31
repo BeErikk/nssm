@@ -1,75 +1,100 @@
+/*******************************************************************************
+ hook.h - 
+
+ SPDX-License-Identifier: CC0 1.0 Universal Public Domain
+ Original author Iain Patterson released nssm under Public Domain
+ https://creativecommons.org/publicdomain/zero/1.0/
+
+ NSSM source code - the Non-Sucking Service Manager
+
+ 2025-05-31 and onwards modified Jerker Bäck
+
+*******************************************************************************/
+
+#pragma once
+
 #ifndef HOOK_H
 #define HOOK_H
 
-#define NSSM_HOOK_EVENT_START _T("Start")
-#define NSSM_HOOK_EVENT_STOP _T("Stop")
-#define NSSM_HOOK_EVENT_EXIT _T("Exit")
-#define NSSM_HOOK_EVENT_POWER _T("Power")
-#define NSSM_HOOK_EVENT_ROTATE _T("Rotate")
+// clang-format off
 
-#define NSSM_HOOK_ACTION_PRE _T("Pre")
-#define NSSM_HOOK_ACTION_POST _T("Post")
-#define NSSM_HOOK_ACTION_CHANGE _T("Change")
-#define NSSM_HOOK_ACTION_RESUME _T("Resume")
+enum class hookconst : uint16_t
+{
+	namelength		= SERVICE_NAME_LENGTH * 2,	/* Hook name will be "<service> (<event>/<action>)" */
+	version			= 1,
+};
+enum class nssmhook : uint8_t
+{
+	none			= UINT8_MAX,
+	success			= 0,			/* Hook ran successfully. */
+	notfound		= 1,			/* No hook configured. */
+	abort			= 99,			/* Hook requested abort. */
+	error			= 100,			/* Internal error launching hook. */
+	notrun			= 101,			/* Hook was not run. */
+	timeout			= 102,			/* Hook timed out. */
+	failed			= 111			/* Hook returned non-zero. */
 
-/* Hook name will be "<service> (<event>/<action>)" */
-#define HOOK_NAME_LENGTH SERVICE_NAME_LENGTH * 2
+};
 
-#define NSSM_HOOK_VERSION 1
+namespace hook
+{
+constexpr std::wstring_view eventstart			{ L"Start"};						// NSSM_HOOK_EVENT_START
+constexpr std::wstring_view eventstop			{ L"Stop" };						// NSSM_HOOK_EVENT_STOP
+constexpr std::wstring_view eventexit			{ L"Exit" };						// NSSM_HOOK_EVENT_EXIT
+constexpr std::wstring_view eventpower			{ L"Power" };						// NSSM_HOOK_EVENT_POWER
+constexpr std::wstring_view eventrotate			{ L"Rotate" };						// NSSM_HOOK_EVENT_ROTATE
 
-/* Hook ran successfully. */
-#define NSSM_HOOK_STATUS_SUCCESS 0
-/* No hook configured. */
-#define NSSM_HOOK_STATUS_NOTFOUND 1
-/* Hook requested abort. */
-#define NSSM_HOOK_STATUS_ABORT 99
-/* Internal error launching hook. */
-#define NSSM_HOOK_STATUS_ERROR 100
-/* Hook was not run. */
-#define NSSM_HOOK_STATUS_NOTRUN 101
-/* Hook timed out. */
-#define NSSM_HOOK_STATUS_TIMEOUT 102
-/* Hook returned non-zero. */
-#define NSSM_HOOK_STATUS_FAILED 111
+constexpr std::wstring_view actionpre			{ L"Pre" };							// NSSM_HOOK_ACTION_PRE
+constexpr std::wstring_view actionpost			{ L"Post" };						// NSSM_HOOK_ACTION_POST
+constexpr std::wstring_view actionchange		{ L"Change" };						// NSSM_HOOK_ACTION_CHANGE
+constexpr std::wstring_view actionresume		{ L"Resume" };						// NSSM_HOOK_ACTION_RESUME
+} // namespace hook
 
 /* Version 1. */
-#define NSSM_HOOK_ENV_VERSION _T("NSSM_HOOK_VERSION")
-#define NSSM_HOOK_ENV_IMAGE_PATH _T("NSSM_EXE")
-#define NSSM_HOOK_ENV_NSSM_CONFIGURATION _T("NSSM_CONFIGURATION")
-#define NSSM_HOOK_ENV_NSSM_VERSION _T("NSSM_VERSION")
-#define NSSM_HOOK_ENV_BUILD_DATE _T("NSSM_BUILD_DATE")
-#define NSSM_HOOK_ENV_PID _T("NSSM_PID")
-#define NSSM_HOOK_ENV_DEADLINE _T("NSSM_DEADLINE")
-#define NSSM_HOOK_ENV_SERVICE_NAME _T("NSSM_SERVICE_NAME")
-#define NSSM_HOOK_ENV_SERVICE_DISPLAYNAME _T("NSSM_SERVICE_DISPLAYNAME")
-#define NSSM_HOOK_ENV_COMMAND_LINE _T("NSSM_COMMAND_LINE")
-#define NSSM_HOOK_ENV_APPLICATION_PID _T("NSSM_APPLICATION_PID")
-#define NSSM_HOOK_ENV_EVENT _T("NSSM_EVENT")
-#define NSSM_HOOK_ENV_ACTION _T("NSSM_ACTION")
-#define NSSM_HOOK_ENV_TRIGGER _T("NSSM_TRIGGER")
-#define NSSM_HOOK_ENV_LAST_CONTROL _T("NSSM_LAST_CONTROL")
-#define NSSM_HOOK_ENV_START_REQUESTED_COUNT _T("NSSM_START_REQUESTED_COUNT")
-#define NSSM_HOOK_ENV_START_COUNT _T("NSSM_START_COUNT")
-#define NSSM_HOOK_ENV_THROTTLE_COUNT _T("NSSM_THROTTLE_COUNT")
-#define NSSM_HOOK_ENV_EXIT_COUNT _T("NSSM_EXIT_COUNT")
-#define NSSM_HOOK_ENV_EXITCODE _T("NSSM_EXITCODE")
-#define NSSM_HOOK_ENV_RUNTIME _T("NSSM_RUNTIME")
-#define NSSM_HOOK_ENV_APPLICATION_RUNTIME _T("NSSM_APPLICATION_RUNTIME")
+namespace hookenv
+{
+constexpr std::wstring_view hookversion			{ L"NSSM_HOOK_VERSION" };			// NSSM_HOOK_ENV_VERSION
+constexpr std::wstring_view imagepath			{ L"NSSM_EXE" };					// NSSM_HOOK_ENV_IMAGE_PATH
+constexpr std::wstring_view config				{ L"NSSM_CONFIGURATION" };			// NSSM_HOOK_ENV_NSSM_CONFIGURATION
+constexpr std::wstring_view version				{ L"NSSM_VERSION" };				// NSSM_HOOK_ENV_NSSM_VERSION
+constexpr std::wstring_view builddate			{ L"NSSM_BUILD_DATE" };				// NSSM_HOOK_ENV_BUILD_DATE
+constexpr std::wstring_view pid					{ L"NSSM_PID" };					// NSSM_HOOK_ENV_PID
+constexpr std::wstring_view deadline			{ L"NSSM_DEADLINE" };				// NSSM_HOOK_ENV_DEADLINE
+constexpr std::wstring_view servicename			{ L"NSSM_SERVICE_NAME" };			// NSSM_HOOK_ENV_SERVICE_NAME
+constexpr std::wstring_view displayname			{ L"NSSM_SERVICE_DISPLAYNAME" };	// NSSM_HOOK_ENV_SERVICE_DISPLAYNAME
+constexpr std::wstring_view commandline			{ L"NSSM_COMMAND_LINE" };			// NSSM_HOOK_ENV_COMMAND_LINE
+constexpr std::wstring_view apppid				{ L"NSSM_APPLICATION_PID" };		// NSSM_HOOK_ENV_APPLICATION_PID
+constexpr std::wstring_view event				{ L"NSSM_EVENT" };					// NSSM_HOOK_ENV_EVENT
+constexpr std::wstring_view action				{ L"NSSM_ACTION" };					// NSSM_HOOK_ENV_ACTION
+constexpr std::wstring_view trigger				{ L"NSSM_TRIGGER" };				// NSSM_HOOK_ENV_TRIGGER
+constexpr std::wstring_view lastcontrol			{ L"NSSM_LAST_CONTROL" };			// NSSM_HOOK_ENV_LAST_CONTROL
+constexpr std::wstring_view startrequestedcount	{ L"NSSM_START_REQUESTED_COUNT" };	// NSSM_HOOK_ENV_START_REQUESTED_COUNT
+constexpr std::wstring_view startcount			{ L"NSSM_START_COUNT" };			// NSSM_HOOK_ENV_START_COUNT
+constexpr std::wstring_view throttlecount		{ L"NSSM_THROTTLE_COUNT" };			// NSSM_HOOK_ENV_THROTTLE_COUNT
+constexpr std::wstring_view exitcount			{ L"NSSM_EXIT_COUNT" };				// NSSM_HOOK_ENV_EXIT_COUNT
+constexpr std::wstring_view exitcode			{ L"NSSM_EXITCODE" };				// NSSM_HOOK_ENV_EXITCODE
+constexpr std::wstring_view runtime				{ L"NSSM_RUNTIME" };				// NSSM_HOOK_ENV_RUNTIME
+constexpr std::wstring_view appruntime			{ L"NSSM_APPLICATION_RUNTIME" };	// NSSM_HOOK_ENV_APPLICATION_RUNTIME
+} // namespace hookenv
 
-typedef struct {
-  TCHAR name[HOOK_NAME_LENGTH];
-  HANDLE thread_handle;
-} hook_thread_data_t;
+struct hook_thread_data_t
+{
+	wchar_t name[std::to_underlying(hookconst::namelength)] {};
+	HANDLE thread_handle {};
+};
 
-typedef struct {
-  hook_thread_data_t *data;
-  int num_threads;
-} hook_thread_t;
+struct hook_thread_t
+{
+	hook_thread_data_t* data {};
+	int32_t num_threads {};
+};
 
-bool valid_hook_name(const TCHAR *, const TCHAR *, bool);
-void await_hook_threads(hook_thread_t *, SERVICE_STATUS_HANDLE, SERVICE_STATUS *, unsigned long);
-int nssm_hook(hook_thread_t *, nssm_service_t *, TCHAR *, TCHAR *, unsigned long *, unsigned long, bool);
-int nssm_hook(hook_thread_t *, nssm_service_t *, TCHAR *, TCHAR *, unsigned long *, unsigned long);
-int nssm_hook(hook_thread_t *, nssm_service_t *, TCHAR *, TCHAR *, unsigned long *);
+// clang-format on
+
+bool valid_hook_name(const wchar_t*, const wchar_t*, bool);
+void await_hook_threads(hook_thread_t*, SERVICE_STATUS_HANDLE, SERVICE_STATUS*, uint32_t);
+nssmhook nssm_hook(hook_thread_t*, nssm_service_t*, wchar_t*, wchar_t*, uint32_t*, uint32_t, bool);
+nssmhook nssm_hook(hook_thread_t*, nssm_service_t*, wchar_t*, wchar_t*, uint32_t*, uint32_t);
+nssmhook nssm_hook(hook_thread_t*, nssm_service_t*, wchar_t*, wchar_t*, uint32_t*);
 
 #endif
